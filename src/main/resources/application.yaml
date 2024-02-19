@@ -25,5 +25,5 @@ spring:
         default_batch_fetch_size: 100
   sql.init.mode: always
 
-  server:
-      port : 8090
+server:
+    port : 8090

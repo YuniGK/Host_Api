@@ -21,8 +21,7 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
-public class Watch{//감시
+public class Watch extends AuditingFields{//감시
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,15 +34,6 @@ public class Watch{//감시
     private String eventOccurrence;//사건 발생
     @Setter @Column(nullable = false)
     private String eventType;//사건 유형
-
-    @CreatedDate @Column(nullable = false)
-    private LocalDateTime createdAt;//사건 발생 일시
-    @CreatedBy @Column(nullable = false)
-    private String createdBy;//사건 발생 주체의 사원
-    @LastModifiedDate @Column(nullable = false)
-    private LocalDateTime modifiedAt;//사건 수정 일시
-    @LastModifiedBy @Column(nullable = false)
-    private String modifiedBy;//사건 수정 주체의 사원
 
     private Watch(String eventOccurrence, String eventType) {
         this.eventOccurrence = eventOccurrence;

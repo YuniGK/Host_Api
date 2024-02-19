@@ -27,8 +27,7 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
-public class Host {
+public class Host extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -41,16 +40,6 @@ public class Host {
     @Setter @Column(nullable = false)
     @ColumnDefault("false")
     private boolean deleteFlag;//삭제 여부
-
-    @CreatedDate @Column(nullable = false)
-    private LocalDateTime createdAt;//등록 시간
-    @CreatedBy @Column(nullable = false)
-    private String createdBy;//등록자
-
-    @LastModifiedDate @Column(nullable = false)
-    private LocalDateTime modifiedAt;//수정 시간
-    @LastModifiedBy @Column(nullable = false)
-    private String modifiedBy;//수정자
 
     private Host(String name, String ip, boolean deleteFlag) {
         this.name = name;
