@@ -37,8 +37,7 @@ class JpaRepositoryTest {
                 .isNotNull()
                 .hasSize(5);
     }
-
-    //@Disabled
+     
     @DisplayName("등록 테스트")
     @Test
     void givenTest_whenInsert_thenWork() throws Exception{
