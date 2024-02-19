@@ -9,6 +9,7 @@
     + password: root!!root
 
 * ##### 접속 주소 - http://localhost:8090/
+    + http://localhost:8090/api
 
 * ##### sql문
     src > main > resources >>> data.sql
