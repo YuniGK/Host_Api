@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("----- 연결 테스트 -----")
 @Import(JpaConfig.class)
 @DataJpaTest
+@Transactional
 class JpaRepositoryTest {
     private HostRepository hostRepository;
 
@@ -38,17 +39,15 @@ class JpaRepositoryTest {
                 .hasSize(5);
     }
 
-    @Disabled
+    //@Disabled
     @DisplayName("등록 테스트")
     @Test
-    @Transactional
     void givenTest_whenInsert_thenWork(){
         //given
         long previousCount = hostRepository.count();
 
         //when
         Host saveHost = Host.of("name", "123.100.003", false);
-        System.out.println("save >> "+saveHost);
         hostRepository.save(saveHost);
 
         //then
@@ -58,7 +57,6 @@ class JpaRepositoryTest {
 
     @DisplayName("수정 테스트")
     @Test
-    @Transactional
     void givenTest_whenUpdate_thenWork(){
         //given
         Host host = hostRepository.findById(1L).orElseThrow();
@@ -73,10 +71,8 @@ class JpaRepositoryTest {
         assertThat(saveHost).hasFieldOrPropertyWithValue("deleteFlag", true);
     }
 
-    @Disabled
     @DisplayName("삭제 테스트")
     @Test
-    @Transactional
     void givenTest_whenDelete_thenWork(){
         //given
         Host host = hostRepository.findById(1L).orElseThrow();

@@ -41,8 +41,8 @@ select * from host;
 insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (1, 'Deina', '124.151.146.203', false, now(), 'Deina Spalton', now(), 'Deina Heal');
 insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (2, 'Baxy', '124.151.146.200', false, now(), 'Baxy Stieger', now(), 'Baxy Flook');
 insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (3, 'Asia', '31.35.253.191', false, now(), 'Asia Brunnstein', now(), 'Asia Pragnell');
-insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (4, 'Livy', '82.106.57.73', true, now(), 'Livy Bakster', now(), 'Livy Sheals');
-insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (5, 'Lay', '13.37.165.65', true, now(), 'Lay Hymus', now(), 'Lay Kitchiner');
+insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (4, 'Livy', '82.106.57.73', false, now(), 'Livy Bakster', now(), 'Livy Sheals');
+insert into host (id, name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values (5, 'Lay', '13.37.165.65', false, now(), 'Lay Hymus', now(), 'Lay Kitchiner');
 
 insert into watch (id, event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values (1, 'Type A', 'Type C', now(), 'Hill Suddards', now(), 'Thain Schlagtmans');
 insert into watch (id, event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values (2, 'Type D', 'Type D', now(), 'Willem Lattie', now(), 'Dulcie Whybray');
