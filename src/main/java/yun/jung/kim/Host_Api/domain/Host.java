@@ -9,6 +9,8 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import yun.jung.kim.Host_Api.config.JpaConfig;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Host {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +37,6 @@ public class Host {
     private String name;
     @Setter @Column(nullable = false)
     private String ip;
-
-    @OrderBy("id")
-    @OneToMany(mappedBy = "host")
-    @ToString.Exclude
-    private List<Watch> watches = new ArrayList<Watch>();
 
     @Setter @Column(nullable = false)
     @ColumnDefault("false")
@@ -54,7 +52,11 @@ public class Host {
     @LastModifiedBy @Column(nullable = false)
     private String modifiedBy;//수정자
 
-    protected Host(String name, String ip, boolean deleteFlag) {}
+    private Host(String name, String ip, boolean deleteFlag) {
+        this.name = name;
+        this.ip = ip;
+        this.deleteFlag = deleteFlag;
+    }
 
     public static Host of(String name, String ip, boolean deleteFlag) {
         return new Host(name, ip, deleteFlag);

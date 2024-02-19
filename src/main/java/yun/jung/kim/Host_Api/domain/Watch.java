@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -20,13 +21,11 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Watch{//감시
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Host host;
 
     @Setter @OneToOne(mappedBy = "watch", fetch = FetchType.LAZY)
     private WatchResult watchResult;
@@ -46,7 +45,7 @@ public class Watch{//감시
     @LastModifiedBy @Column(nullable = false)
     private String modifiedBy;//사건 수정 주체의 사원
 
-    public Watch(String eventOccurrence, String eventType) {
+    private Watch(String eventOccurrence, String eventType) {
         this.eventOccurrence = eventOccurrence;
         this.eventType = eventType;
     }
