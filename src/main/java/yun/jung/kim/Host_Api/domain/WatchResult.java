@@ -2,7 +2,6 @@ package yun.jung.kim.Host_Api.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -15,12 +14,12 @@ import java.util.Objects;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "WATCH", indexes = {
-        @Index(columnList = "eventOccurrence"),
+@Table(name = "WATCHRESULT", indexes = {
+        @Index(columnList = "eventResult"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
-public class Watch{//감시
+public class WatchResult {//감시 결과
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,38 +27,34 @@ public class Watch{//감시
     @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Host host;
 
-    @Setter @OneToOne(mappedBy = "watch", fetch = FetchType.LAZY)
-    private WatchResult watchResult;
+    @Setter @OneToOne(fetch = FetchType.LAZY, optional = false)
+    private Watch watch;
 
     @Setter
-    @Column(nullable = false)
-    private String eventOccurrence;//사건 발생
-    @Setter @Column(nullable = false)
-    private String eventType;//사건 유형
+    private  String eventResult;//사건 결과
 
     @CreatedDate @Column(nullable = false)
     private LocalDateTime createdAt;//사건 발생 일시
     @CreatedBy @Column(nullable = false)
-    private String createdBy;//사건 발생 주체의 사원
+    private String createdBy;//사건 발생 주체의 시원
     @LastModifiedDate @Column(nullable = false)
     private LocalDateTime modifiedAt;//사건 수정 일시
     @LastModifiedBy @Column(nullable = false)
-    private String modifiedBy;//사건 수정 주체의 사원
+    private String modifiedBy;//사건 발생 주체 수정자
 
-    public Watch(String eventOccurrence, String eventType) {
-        this.eventOccurrence = eventOccurrence;
-        this.eventType = eventType;
+    public WatchResult(String eventResult) {
+        this.eventResult = eventResult;
     }
 
-    public static Watch of(String eventOccurrence, String eventType) {
-        return new Watch(eventOccurrence, eventType);
+    public static WatchResult of(String eventResult) {
+        return new WatchResult(eventResult);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Watch watch)) return false;
-        return id == watch.id;
+        if (!(o instanceof WatchResult watchResult)) return false;
+        return id == watchResult.id;
     }
 
     @Override
