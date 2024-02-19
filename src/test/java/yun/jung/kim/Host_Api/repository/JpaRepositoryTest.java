@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("----- 연결 테스트 -----")
 @Import(JpaConfig.class)
 @DataJpaTest
-@Transactional
 class JpaRepositoryTest {
     private HostRepository hostRepository;
 
@@ -42,7 +41,7 @@ class JpaRepositoryTest {
     //@Disabled
     @DisplayName("등록 테스트")
     @Test
-    void givenTest_whenInsert_thenWork(){
+    void givenTest_whenInsert_thenWork() throws Exception{
         //given
         long previousCount = hostRepository.count();
 
