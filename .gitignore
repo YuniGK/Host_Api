@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,macos,windows,dbeaver,maven,gradle,node,intellij+all,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,windows,dbeaver,maven,gradle,node,intellij+all,visualstudio
 
+### Query dsl ####
+/src/main/generated
+
 ### DBeaver ###
 # ide config file
 .dbeaver-data-sources*.xml
