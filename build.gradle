@@ -21,24 +21,35 @@ repositories {
 	mavenCentral()
 }
 
+/*
+Spring Boot Actuator
+Spring Data JPA
+Spring Boot DevTools
+Lombok DEVELOPER
+Thymeleaf
+Rest Repositories HAL Explorer
+Spring Web
+Spring Security
+OAuth2 Client
+H2 Database
+MySQL Driver
+*/
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	implementation 'org.springframework.boot:spring-boot-starter'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	// queryDSL 설정
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
