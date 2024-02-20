@@ -26,8 +26,8 @@ public class Watch extends AuditingFields{//감시
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Setter @OneToOne(mappedBy = "watch", fetch = FetchType.LAZY)
-    private WatchResult watchResult;
+    @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Host host;
 
     @Setter
     @Column(nullable = false)
@@ -35,13 +35,17 @@ public class Watch extends AuditingFields{//감시
     @Setter @Column(nullable = false)
     private String eventType;//사건 유형
 
-    private Watch(String eventOccurrence, String eventType) {
+    @Setter
+    private String eventResult;//사건 결과
+
+    private Watch(String eventOccurrence, String eventType, String eventResult) {
         this.eventOccurrence = eventOccurrence;
         this.eventType = eventType;
+        this.eventResult = eventResult;
     }
 
-    public static Watch of(String eventOccurrence, String eventType) {
-        return new Watch(eventOccurrence, eventType);
+    public static Watch of(String eventOccurrence, String eventType, String eventResult) {
+        return new Watch(eventOccurrence, eventType, eventResult);
     }
 
     @Override

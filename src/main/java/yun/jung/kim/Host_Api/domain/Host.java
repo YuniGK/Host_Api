@@ -37,6 +37,11 @@ public class Host extends AuditingFields{
     @Setter @Column(nullable = false)
     private String ip;
 
+    @OrderBy("id")
+    @OneToMany(mappedBy = "host")
+    @ToString.Exclude
+    private List<Watch> watches = new ArrayList<Watch>();
+
     @Setter @Column(nullable = false)
     @ColumnDefault("false")
     private boolean deleteFlag;//삭제 여부

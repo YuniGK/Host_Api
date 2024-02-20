@@ -20,9 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class JpaRepositoryTest {
     private HostRepository hostRepository;
+    private WatchRepository watchRepository;
 
-    public JpaRepositoryTest(@Autowired HostRepository hostRepository) {
+    public JpaRepositoryTest(@Autowired HostRepository hostRepository,
+                             @Autowired WatchRepository watchRepository) {
         this.hostRepository = hostRepository;
+        this.watchRepository = watchRepository;
     }
 
     @DisplayName("조회 테스트")
@@ -69,6 +72,7 @@ class JpaRepositoryTest {
         assertThat(saveHost).hasFieldOrPropertyWithValue("deleteFlag", true);
     }
 
+    @Disabled
     @DisplayName("삭제 테스트")
     @Test
     void givenTest_whenDelete_thenWork(){

@@ -14,44 +14,29 @@ create table host (
 
 create table watch (
 	id bigint not null auto_increment COMMENT '아이디',
+	host_id bigint not null COMMETN '호스트 아이',
     event_occurrence varchar(255) not null COMMENT '사건 발생',
 	event_type varchar(255) not null COMMENT '사건 유형',
+	event_result varchar(255) COMMENT '사건 결과',
 	created_at datetime(6) not null COMMENT '사건 발생 시간',
 	created_by varchar(255) not null COMMENT '사건 발생 주체',
 	modified_at datetime(6) not null COMMENT '사건 수정 일시',
     modified_by varchar(255) not null COMMENT '사건 수정 주체',
     primary key (id)
 );
-
-create table watchresult (
-	id bigint not null auto_increment COMMENT '아이디',
-	watch_id bigint not null COMMENT '감시 아이디',
-    event_result varchar(255) COMMENT '사건 결과',
-    created_at datetime(6) not null COMMENT '사건 발생 시간',
-    created_by varchar(255) not null COMMENT '사건 발생 주체',
-    modified_at datetime(6) not null COMMENT '사건 수정 일시',
-    modified_by varchar(255) not null COMMENT '사건 수정 주체',
-	primary key (id)
-);
 */
 
 select * from host;
 
 /* 임시 데이터 */
-insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Deina', '124.151.146.203', false, now(), 'Deina Spalton', now(), 'Deina Heal');
-insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Baxy', '124.151.146.200', false, now(), 'Baxy Stieger', now(), 'Baxy Flook');
-insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Asia', '31.35.253.191', false, now(), 'Asia Brunnstein', now(), 'Asia Pragnell');
-insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Livy', '82.106.57.73', false, now(), 'Livy Bakster', now(), 'Livy Sheals');
-insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Lay', '13.37.165.65', false, now(), 'Lay Hymus', now(), 'Lay Kitchiner');
+insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Beulah', '245.206.158.39', false, now(), 'Davis', now(), 'Luciano');
+insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Margalit', '160.221.157.164', false, now(), 'Clayborne', now(), 'Alford');
+insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Zachary', '127.3.150.218', false, now(), 'Julianne', now(), 'Vale');
+insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Bobbi', '213.109.6.60', false, now(), 'Blythe', now(), 'Guenna');
+insert into host (name, ip, delete_flag, created_at, created_by, modified_at, modified_by) values ('Vivia', '75.67.242.45', false, now(), 'Robinetta', now(), 'Bernetta');
 
-insert into watch (event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values ('Type A', 'Type C', now(), 'Hill Suddards', now(), 'Thain Schlagtmans');
-insert into watch (event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values ('Type D', 'Type D', now(), 'Willem Lattie', now(), 'Dulcie Whybray');
-insert into watch (event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values ('Type C', 'Type C', now(), 'Cyril Foulgham', now(), 'Michelina Goves');
-insert into watch (event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values ('Type D', 'Type C', now(), 'Jeremy Isworth', now(), 'Tomasine Laffling');
-insert into watch (event_type, event_occurrence, created_at, created_by, modified_at, modified_by) values ('Type A', 'Type A', now(), 'Arlene Olivia', now(), 'Petey Goggins');
-
-insert into watchresult (watch_id, event_result, created_at, created_by, modified_at, modified_by) values (5, 'Reverse-engineered value-added challenge', now(), 'Domingo Guillford', now(), 'Verney MacKettrick');
-insert into watchresult (watch_id, event_result, created_at, created_by, modified_at, modified_by) values (4, 'Future-proofed eco-centric Graphic Interface', now(), 'Merlina Forstall', now(), 'Roderick Cogger');
-insert into watchresult (watch_id, event_result, created_at, created_by, modified_at, modified_by) values (3, 'Team-oriented needs-based implementation', now(), 'Magdaia McNeilly', now(), 'Roderick');
-insert into watchresult (watch_id, event_result, created_at, created_by, modified_at, modified_by) values (2, 'Ameliorated secondary success', now(), 'Neala Brafield', now(), 'Joyan Pacher');
-insert into watchresult (watch_id, event_result, created_at, created_by, modified_at, modified_by) values (1, 'Future-proofed tertiary portal', now(), 'Yankee Kingzeth', now(), 'Ellary Summerlad');
+insert into watch (host_id, event_occurrence, event_type, event_result, created_at, created_by, modified_at, modified_by) values (5, 'tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis', 'Type1', 'curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', now(), 'Agustin Abraham', now(), 'Clerkclaude Wyper');
+insert into watch (host_id, event_occurrence, event_type, event_result, created_at, created_by, modified_at, modified_by) values (4, 'justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet', 'Type2', 'eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed', now(), 'Merl Tomas', now(), 'Caryl Georg');
+insert into watch (host_id, event_occurrence, event_type, event_result, created_at, created_by, modified_at, modified_by) values (3, 'lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt', 'Type1', 'vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra', now(), 'Malinda Tossell', now(), 'Ira Oddie');
+insert into watch (host_id, event_occurrence, event_type, event_result, created_at, created_by, modified_at, modified_by) values (2, 'sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim', 'Type3', 'ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo', now(), 'Tybie Thorington', now(), 'Dusty Gloyens');
+insert into watch (host_id, event_occurrence, event_type, event_result, created_at, created_by, modified_at, modified_by) values (1, 'non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales', 'Type2', 'pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi', now(), 'Kore Procter', now(), 'Guthry Teresa');
