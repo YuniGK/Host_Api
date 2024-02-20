@@ -65,31 +65,4 @@ class HostControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @DisplayName("[POST] 호스트 저장 - 정상")
-    @Test
-    public void given_whenInsertHost_thenHost() throws Exception{
-        //given
-        //when & then
-        mvc.perform(get("/hosts/search-ip"))
-                .andExpect(status().isOk());
-    }
-
-    @DisplayName("[POST] 호스트 업데이트 - 정상")
-    @Test
-    public void given_whenUpdateHost_thenHost() throws Exception{
-        //given
-        //when & then
-        mvc.perform(get("/hosts/search-ip"))
-                .andExpect(status().isOk());
-    }
-
-    @DisplayName("[POST] 호스트 삭제플래그 업데이트 - 정상")
-    @Test
-    public void given_whenDeleteHost_thenHost() throws Exception{
-        //given
-        //when & then
-        mvc.perform(get("/hosts/search-ip"))
-                .andExpect(status().isOk());
-    }
-
 }

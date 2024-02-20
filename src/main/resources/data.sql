@@ -24,6 +24,17 @@ create table watch (
     modified_by varchar(255) not null COMMENT '사건 수정 주체',
     primary key (id)
 );
+
+ create table user_account (
+        user_id varchar(50) not null COMMENT '아이디',
+        user_password varchar(255) not null COMMENT '비밀번호',
+        email varchar(100) COMMENT '이메일',
+        created_at datetime(6) not null COMMENT '등록 시간',
+        created_by varchar(255) not null COMMENT '등록자',
+        modified_at datetime(6) not null COMMENT '수정 시간',
+        modified_by varchar(255) not null COMMENT '수정자',
+        primary key (user_id)
+    )
 */
 
 select * from host;
