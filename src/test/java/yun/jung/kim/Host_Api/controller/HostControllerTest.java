@@ -1,16 +1,20 @@
 package yun.jung.kim.Host_Api.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import yun.jung.kim.Host_Api.config.SecurityConfig;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@DisplayName("[controller] - host")
+@DisplayName("[CONTROLLER] - host")
+@Import(SecurityConfig.class)
 @WebMvcTest(HostController.class)
 class HostControllerTest {
     private final MockMvc mvc;
@@ -26,7 +30,8 @@ class HostControllerTest {
         //when & then
         mvc.perform(get("/hosts"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("hosts/index"))
                 .andExpect(model().attributeExists("hosts"));
     }
 
@@ -37,7 +42,9 @@ class HostControllerTest {
         //when & then
         mvc.perform(get("/hosts/1"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("hosts"));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("hosts/index"))
+                .andExpect(model().attributeExists("host"));
     }
 
     @DisplayName("[GET] 호스트 검색 - 정상")
