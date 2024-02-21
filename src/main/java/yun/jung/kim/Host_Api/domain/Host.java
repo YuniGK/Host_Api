@@ -2,17 +2,8 @@ package yun.jung.kim.Host_Api.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.Accessors;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.core.annotation.Order;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import yun.jung.kim.Host_Api.config.JpaConfig;
+import yun.jung.kim.Host_Api.domain.constant.DeteleteFlag;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,28 +23,38 @@ public class Host extends AuditingFields{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Setter
+    @JoinColumn(name = "userId")
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;//유저정보 ID
+
     @Setter @Column(nullable = false)
     private String name;
     @Setter @Column(nullable = false)
     private String ip;
 
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "host")
     @ToString.Exclude
     private List<Watch> watches = new ArrayList<Watch>();
 
-    @Setter @Column(nullable = false)
-    @ColumnDefault("false")
-    private boolean deleteFlag;//삭제 여부
+    @Setter @Column(nullable = false, name = "delete_flag")
+    @Enumerated(EnumType.STRING)
+    private DeteleteFlag deleteFlag;//삭제 여부
 
-    private Host(String name, String ip, boolean deleteFlag) {
+    private Host(String name, String ip, DeteleteFlag deleteFlag, UserAccount userAccount) {
         this.name = name;
         this.ip = ip;
         this.deleteFlag = deleteFlag;
+        this.userAccount = userAccount;
     }
 
-    public static Host of(String name, String ip, boolean deleteFlag) {
-        return new Host(name, ip, deleteFlag);
+    public static Host of(String name, String ip, UserAccount userAccount) {
+        return new Host(name, ip, null, userAccount);
+    }
+
+    public static Host of(String name, String ip, DeteleteFlag deleteFlag, UserAccount userAccount) {
+        return new Host(name, ip, deleteFlag, userAccount);
     }
 
     @Override

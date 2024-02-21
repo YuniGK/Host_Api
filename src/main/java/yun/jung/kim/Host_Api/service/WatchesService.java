@@ -17,9 +17,11 @@ public class WatchesService {
     private final WatchRepository watchRepository;
 
     public Page<WatchesDto> searchWatches(SearchType searchType, String searchKeyword) {
+        return Page.empty();
     }
 
     public WatchesDto searchWatch(long id) {
+        return null;
     }
 
     public void saveWatch(WatchesDto dto) {

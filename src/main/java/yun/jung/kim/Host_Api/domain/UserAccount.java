@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "USER_ACCOUNT",
         indexes = {
-        @Index(columnList = "email", unique = true),
+        @Index(columnList = "email"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
@@ -27,27 +28,25 @@ public class UserAccount extends AuditingFields{
 
     @Setter @Column(length = 100) private String email;
 
-    private UserAccount(String userId, String userPassword, String email, String createdBy) {
+    private UserAccount(String userId, String userPassword, String email) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
-        //this.createdBy = createdBy;
-        //this.modifiedBy = createdBy;
     }
 
     public static UserAccount of(String userId, String userPassword, String email) {
         return UserAccount.of(userId, userPassword, email, null);
     }
 
-    public static UserAccount of(String userId, String userPassword, String email, String createdBy) {
-        return new UserAccount(userId, userPassword, email, createdBy);
+    public static UserAccount of(String userId, String userPassword, String email, String createdAt) {
+        return UserAccount.of(userId, userPassword, email, createdAt);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserAccount that)) return false;
-        return this.getUserId() != null && this.getUserId().equals(that.getUserId());
+        if (!(o instanceof UserAccount userAccount)) return false;
+        return userId == userAccount.userId;
     }
 
     @Override

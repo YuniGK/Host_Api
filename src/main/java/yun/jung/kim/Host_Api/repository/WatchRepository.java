@@ -1,6 +1,7 @@
 package yun.jung.kim.Host_Api.repository;
 
 import com.querydsl.core.types.dsl.DateTimeExpression;
+import com.querydsl.core.types.dsl.EnumExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -24,7 +25,7 @@ public interface WatchRepository extends JpaRepository<Watch, Long>,
         bindings.including(root.eventOccurrence, root.eventResult, root.eventType, root.createdAt, root.createdBy);
         bindings.bind(root.eventOccurrence).first(StringExpression::containsIgnoreCase);
         bindings.bind(root.eventResult).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.eventType).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.eventType).first(EnumExpression::eq);
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);
     };

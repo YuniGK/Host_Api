@@ -8,13 +8,14 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import yun.jung.kim.Host_Api.domain.constant.EventType;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "WATCH", indexes = {
         @Index(columnList = "eventOccurrence"),
@@ -30,22 +31,30 @@ public class Watch extends AuditingFields{//감시
     private Host host;
 
     @Setter
+    @JoinColumn(name = "userId")
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;//유저정보 ID
+
+    @Setter
     @Column(nullable = false)
     private String eventOccurrence;//사건 발생
-    @Setter @Column(nullable = false)
-    private String eventType;//사건 유형
+
+    @Setter @Column(nullable = false, name= "event_type")
+    @Enumerated(EnumType.STRING)
+    private EventType eventType;//사건 유형
 
     @Setter
     private String eventResult;//사건 결과
 
-    private Watch(String eventOccurrence, String eventType, String eventResult) {
+    private Watch(String eventOccurrence, EventType eventType, String eventResult, UserAccount userAccount) {
         this.eventOccurrence = eventOccurrence;
         this.eventType = eventType;
         this.eventResult = eventResult;
+        this.userAccount = userAccount;
     }
 
-    public static Watch of(String eventOccurrence, String eventType, String eventResult) {
-        return new Watch(eventOccurrence, eventType, eventResult);
+    public static Watch of(String eventOccurrence, EventType eventType, String eventResult, UserAccount userAccount) {
+        return new Watch(eventOccurrence, eventType, eventResult, userAccount);
     }
 
     @Override

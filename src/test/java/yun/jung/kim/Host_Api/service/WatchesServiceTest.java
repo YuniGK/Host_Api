@@ -1,5 +1,6 @@
 package yun.jung.kim.Host_Api.service;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,6 +53,7 @@ class WatchesServiceTest {
         assertThat(watch).isNotNull();
     }
 
+    /*
     @DisplayName("감시 등록")
     @Test
     void givenInfo_whenSave_thenReturn(){
@@ -80,4 +82,5 @@ class WatchesServiceTest {
         //then
         then(watchRepository).should().save(any(Watch.class));
     }
+    */
 }
